@@ -152,3 +152,8 @@ header h1 {
     height: 40px;
     width: 40px;
 }
+ @media (max-width:450px) {
+    .main h1{
+        font-size: 30px;
+    }
+ }
