@@ -45,7 +45,6 @@ header img {
 header h1 {
     font-size: 24px;
     font-weight: 600;
-    color: white;
     background: linear-gradient(45deg, #ff1e1e, #2d70ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -54,24 +53,25 @@ header h1 {
 .main {
     flex: 1;
     width: 100vw;
-    /* background-color: black;  */
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     padding: 10px;
+    overflow-y: auto;
 }
-.main h1{
+.main .text {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.9rem;
+    font-size: 2.1rem;
     color: white;
     background: linear-gradient(45deg, #ff1e1e, #2d70ff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
 .textArea {
     flex: 1;
     overflow-y: auto;
@@ -81,6 +81,8 @@ header h1 {
     gap: 12px;
     width: 100%;
     font-size: 17px;
+    font-weight: 500;
+    max-height: calc(100vh - 140px);
 }
 
 .userQuery, .aiResponse {
@@ -100,6 +102,10 @@ header h1 {
 }
 
 .aiResponse {
+    white-space: pre-wrap; 
+    max-width: 85%; 
+    overflow-wrap: break-word; 
+    margin-bottom: 10px; 
     background-color: #e9ecef;
     color: black;
     align-self: flex-start;
@@ -112,13 +118,14 @@ header h1 {
     align-items: center;
     background-color: black;
     position: fixed;
-    bottom: 5px;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
     border-radius: 29px;
     box-shadow: 0px 5px 15px rgba(255, 255, 255, 0.2);
     border: 0.5px solid white;
     padding: 5px;
+    z-index: 100;
 }
 
 .inputDiv input {
@@ -152,8 +159,54 @@ header h1 {
     height: 40px;
     width: 40px;
 }
- @media (max-width:450px) {
-    .main h1{
-        font-size: 30px;
+
+.loading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    color: white;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.loading-text {
+    font-weight: 500;
+}
+
+.loader {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    position: relative;
+    animation: spin 0.7s linear infinite;
+}
+
+.loader::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #ff1e1e, #2d70ff);
+    mask: radial-gradient(circle, transparent 60%, black 61%);
+    -webkit-mask: radial-gradient(circle, transparent 60%, black 61%);
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
     }
- }
+}
+
+@media (max-width: 450px) {
+    .main {
+        padding-bottom: 80px;
+    }
+    .textArea {
+        max-height: calc(100vh - 160px);
+    }
+    .userQuery, .aiResponse {
+        max-width: 90%;
+    }
+}
