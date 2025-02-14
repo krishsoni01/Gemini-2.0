@@ -203,6 +203,9 @@ header h1 {
     .main {
         padding-bottom: 80px;
     }
+    .main .text{
+        font-size: 30px;
+    }
     .textArea {
         max-height: calc(100vh - 160px);
     }
